@@ -6,18 +6,9 @@
   "scripts": {
     "start": "electron .",
     "dist": "electron-builder -mwl --x64",    
-    "dist32": "electron-builder -mwl --x64 --ia32",    
+    "dist32": "electron-builder -mwl --x64 --ia32",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
-  
-    "_____build->files": [
-      "dist/**/*",
-      "!node_modules/**/*",
-      "!src/**/*",
-      "!dist/**/*",
-      "package.json"
-    ],
-
   "icons_creator":"https://anyconv.com/icns-converter/ + https://convertio.co/",
   "build": {
     "productName": "VkontakteStore",
