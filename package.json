@@ -8,10 +8,14 @@
     "release": "git add . && git tag v1.0.1 && git commit -am 'v1.0.1' && git push --tags",
     "dist": "electron-builder -mwl --x64",    
     "dist32": "electron-builder -mwl --x64 --ia32",
+    "build:linux": "electron-builder -l --x64",
+    "build:mac": "electron-builder -m --x64",
+    "build:win": "electron-builder -w --x64",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "icons_creator":"https://anyconv.com/icns-converter/ + https://convertio.co/",
   "build": {
+    "artifactName": "vkontaktestore-${os}.${ext}",
     "productName": "VkontakteStore",
     "appId": "com.vks.store",
     "publish": null,
