@@ -1,10 +1,11 @@
 {
   "name": "desktopapp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Electron приложение для запуска без CORS",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
+    "release": "git add . && git tag v1.0.1 && git commit -am 'v1.0.1' && git push --tags",
     "dist": "electron-builder -mwl --x64",    
     "dist32": "electron-builder -mwl --x64 --ia32",
     "test": "echo \"Error: no test specified\" && exit 0"
