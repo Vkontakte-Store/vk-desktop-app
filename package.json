@@ -1,0 +1,58 @@
+{
+  "name": "desktopapp",
+  "version": "1.0.0",
+  "description": "Electron приложение для запуска без CORS",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder -mwl --x64",    
+    "dist32": "electron-builder -mwl --x64 --ia32",    
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  
+    "_____build->files": [
+      "dist/**/*",
+      "!node_modules/**/*",
+      "!src/**/*",
+      "!dist/**/*",
+      "package.json"
+    ],
+
+  "icons_creator":"https://anyconv.com/icns-converter/ + https://convertio.co/",
+  "build": {
+    "productName": "VkontakteStore",
+    "appId": "com.vks.store",
+    "publish": null,
+    "win": {
+      "target": "portable",
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "icon": "assets/icon.icns",
+      "category": "com.vks.store"
+    },
+    "linux": {
+      "target": "deb",
+      "icon": "assets/icon.icns"
+    }
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/vkstore/desktopapp.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "alexstep",
+    "email": "admin@vkontakte.store"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/vkstore/desktopapp/issues"
+  },
+  "homepage": "https://gitlab.com/vkstore/desktopapp#readme",
+  "devDependencies": {
+    "electron": "^8.0.2",
+    "electron-builder": "^22.3.2"
+  }
+}
