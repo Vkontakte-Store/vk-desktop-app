@@ -2,7 +2,9 @@
   "name": "desktopapp",
   "version": "1.0.4",
   "description": "Electron приложение для запуска без CORS",
-  "keywords": ["automate"],
+  "keywords": [
+    "automate"
+  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/Vkontakte-Store/vk-desktop-app.git"
@@ -16,44 +18,48 @@
     "name": "alexstep",
     "email": "admin@vkontakte.store"
   },
-
   "main": "index.js",
   "scripts": {
     "start": "electron .",
     "release": "git add . && git tag v1.0.1 && git commit -am 'v1.0.1' && git push --tags",
     "build": "echo \"Nothing to build\"",
-    "dist": "electron-builder -mwl --x64",    
+    "dist": "electron-builder -mwl --x64",
     "dist_win32": "electron-builder -w --ia32",
     "build:linux": "electron-builder -l --x64",
     "build:mac": "electron-builder -m --x64",
     "build:win": "electron-builder -w --x64",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
-  "icons_creator":"https://anyconv.com/icns-converter/ + https://convertio.co/",
+  "icons_creator": "https://anyconv.com/icns-converter/ + https://convertio.co/",
   "build": {
     "artifactName": "vkontaktestore-${os}.${ext}",
     "productName": "VkontakteStore",
     "appId": "com.vks.store",
     "publish": null,
     "win": {
-      "publish": ["github"],
+      "publish": [
+        "github"
+      ],
       "target": "portable",
       "icon": "assets/icon.ico"
     },
     "mac": {
-      "publish": ["github"],
+      "publish": [
+        "github"
+      ],
       "icon": "assets/icon.icns",
       "category": "com.vks.store"
     },
     "linux": {
-      "publish": ["github"],
+      "publish": [
+        "github"
+      ],
       "target": "deb",
       "icon": "assets/icon.icns"
     }
   },
-
   "devDependencies": {
-    "electron": "^8.0.2",
-    "electron-builder": "^22.3.2"
+    "electron": "8.3.0",
+    "electron-builder": "22.6.0"
   }
 }
