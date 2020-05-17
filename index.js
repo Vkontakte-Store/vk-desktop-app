@@ -1,26 +1,35 @@
 'use strict'
 
-const { app, BrowserWindow } = require('electron')
-
-const isDevelopment = process.env.NODE_ENV !== 'production'
+const { app, shell, BrowserWindow } = require('electron')
 
 let mainWindow
 
 function createMainWindow () {
+
+  let titleBarStyle = 'default'
+  if (process.platform === 'darwin') {
+    titleBarStyle = 'hiddenInset'
+  }
+
   const window = new BrowserWindow({ 
     webPreferences: {
       webSecurity: false,
-      devTools: isDevelopment,
+      devTools: true,
       nodeIntegration: true,
     },
+    titleBarStyle: titleBarStyle,
     width: 1054, minWidth:  800,
     height: 680, minHeight: 400,
   })
 
   window.loadURL('https://vkontakte.store')
+  // window.loadURL('http://localhost:3000')
 
-  window.on('closed', () => {
-    mainWindow = null
+  // Open external links in default system browser
+  // https://www.grzegorowski.com/electron-open-in-new-window
+  window.webContents.on('new-window', (e, url) => {
+    e.preventDefault()
+    shell.openExternal(url)
   })
 
   window.webContents.on('devtools-opened', () => {
@@ -28,6 +37,10 @@ function createMainWindow () {
     setImmediate(() => {
       window.focus()
     })
+  })
+
+  window.on('closed', () => {
+    mainWindow = null
   })
 
   return window
