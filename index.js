@@ -12,6 +12,7 @@ function createMainWindow () {
   }
 
   const window = new BrowserWindow({ 
+    show: false,
     webPreferences: {
       webSecurity: false,
       devTools: true,
@@ -20,7 +21,11 @@ function createMainWindow () {
     titleBarStyle: titleBarStyle,
     width: 1054, minWidth:  800,
     height: 680, minHeight: 400,
+    backgroundColor: '#5181b8'
   })
+  
+  // Убираем меню вверху в windows и linux
+  window.setMenu(null)
 
   window.loadURL('https://vkontakte.store')
   // window.loadURL('http://localhost:3000')
@@ -37,6 +42,10 @@ function createMainWindow () {
     setImmediate(() => {
       window.focus()
     })
+  })
+
+  window.once('ready-to-show', () => {
+    window.show()
   })
 
   window.on('closed', () => {
