@@ -1,6 +1,6 @@
 {
   "name": "desktopapp",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Electron приложение для запуска без CORS",
   "keywords": [
     "automate"
