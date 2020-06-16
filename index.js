@@ -1,9 +1,13 @@
 'use strict'
 
-const { app, shell, BrowserWindow } = require('electron')
+const { app, shell, BrowserWindow, Menu } = require('electron')
+
+// disable CORS, and SSL check
+// https://github.com/electron/electron/issues/20710
+app.commandLine.appendSwitch('disable-web-security')
+app.commandLine.appendSwitch('ignore-certificate-errors')
 
 let mainWindow
-
 function createMainWindow () {
 
   let titleBarStyle = 'default'
@@ -14,10 +18,15 @@ function createMainWindow () {
   const window = new BrowserWindow({ 
     show: false,
     webPreferences: {
-      webSecurity: false,
+      webSecurity: false, // https://github.com/electron/electron/issues/20710
+      allowRunningInsecureContent: true,
       devTools: true,
       nodeIntegration: true,
+      textAreasAreResizable: false,
+      webgl: false
     },
+    title: 'Vkontakte.Store',
+    autoHideMenuBar: true,
     titleBarStyle: titleBarStyle,
     width: 1054, minWidth:  800,
     height: 680, minHeight: 400,
@@ -26,6 +35,7 @@ function createMainWindow () {
   
   // Убираем меню вверху в windows и linux
   window.setMenu(null)
+  window.setMenuBarVisibility(false)
 
   window.loadURL('https://vkontakte.store')
   // window.loadURL('http://localhost:3000')
@@ -67,3 +77,39 @@ app.on('window-all-closed', () => {
 app.on('ready', () => {
   mainWindow = createMainWindow()
 })
+
+
+// set menu
+Menu.setApplicationMenu(Menu.buildFromTemplate([
+  {
+    label: 'File',
+    submenu: [
+      { role: 'quit' }
+    ]
+  },
+  {
+    label: 'View',
+    submenu: [
+      { role: 'togglefullscreen' },
+      { type: 'separator' },
+      // { role: 'reload' },
+      { role: 'forcereload' },
+      { role: 'toggledevtools' },
+      // { type: 'separator' },
+      // { role: 'resetzoom' },
+      // { role: 'zoomin' },
+      // { role: 'zoomout' },
+    ]
+  },
+  {
+    role: 'help',
+    submenu: [
+      {
+        label: 'Learn More',
+        click: async () => {
+          await shell.openExternal('https://vk.com/vkstorevk')
+        }
+      }
+    ]
+  }
+]))
