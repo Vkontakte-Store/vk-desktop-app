@@ -1,6 +1,7 @@
 'use strict'
 
-const { app, shell, BrowserWindow, Menu } = require('electron')
+const { app, shell, ipcMain, session, BrowserWindow, Menu } = require('electron')
+
 
 // disable CORS, and SSL check
 // https://github.com/electron/electron/issues/20710
@@ -37,14 +38,19 @@ function createMainWindow () {
   window.setMenu(null)
   window.setMenuBarVisibility(false)
 
-  window.loadURL('https://vkontakte.store')
-  // window.loadURL('http://localhost:3000')
+  // window.loadURL('https://vkontakte.store')
+  window.loadURL('http://localhost:3000')
 
   // Open external links in default system browser
   // https://www.grzegorowski.com/electron-open-in-new-window
   window.webContents.on('new-window', (e, url) => {
     e.preventDefault()
     shell.openExternal(url)
+  })
+
+  // clear all cookies on logout
+  ipcMain.on('clear-cookie', ()=>{
+    session.defaultSession.clearStorageData()
   })
 
   window.webContents.on('devtools-opened', () => {
