@@ -38,8 +38,8 @@ function createMainWindow () {
   window.setMenu(null)
   window.setMenuBarVisibility(false)
 
-  // window.loadURL('https://vkontakte.store')
-  window.loadURL('http://localhost:3000')
+  window.loadURL('https://vkontakte.store')
+  // window.loadURL('http://localhost:3000')
 
   // Open external links in default system browser
   // https://www.grzegorowski.com/electron-open-in-new-window
