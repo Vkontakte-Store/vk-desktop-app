@@ -1,6 +1,6 @@
 {
   "name": "desktopapp",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Electron приложение для запуска без CORS",
   "keywords": [
     "automate"
@@ -20,7 +20,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "electron .",
+    "start": "siteURL=http://localhost:3000 electron .",
     "release": "git add . && git tag v1.0.1 && git commit -am 'v1.0.1' && git push --tags",
     "build": "echo \"Nothing to build\"",
     "dist": "electron-builder -mwl --x64",

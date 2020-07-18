@@ -38,8 +38,8 @@ function createMainWindow () {
   window.setMenu(null)
   window.setMenuBarVisibility(false)
 
-  window.loadURL('https://vkontakte.store')
-  // window.loadURL('http://localhost:3000')
+  window.loadURL(process.env.siteURL || 'https://vkontakte.store')
+
 
   // Open external links in default system browser
   // https://www.grzegorowski.com/electron-open-in-new-window
@@ -91,6 +91,21 @@ Menu.setApplicationMenu(Menu.buildFromTemplate([
     label: 'File',
     submenu: [
       { role: 'quit' }
+    ]
+  },
+  
+  // без этого меню(Paste) cmd+v не работает 
+  // https://pracucci.com/atom-electron-enable-copy-and-paste.html
+  {
+    label: "Edit",
+    submenu: [
+      { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+      { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+      { type: "separator" },
+      { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+      { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+      { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+      { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
     ]
   },
   {
