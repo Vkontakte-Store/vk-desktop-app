@@ -48,6 +48,14 @@ function createMainWindow () {
     shell.openExternal(url)
   })
 
+  window.on('enter-full-screen', ()=>{
+    window.webContents.send('toggle-fullscreen', 'enter')
+  })
+  window.on('leave-full-screen', ()=>{
+    window.webContents.send('toggle-fullscreen', 'leave')
+  })
+
+
   // clear all cookies on logout
   ipcMain.on('clear-cookie', ()=>{
     session.defaultSession.clearStorageData()
