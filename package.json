@@ -34,16 +34,21 @@
   "icons_creator": "https://anyconv.com/icns-converter/ + https://convertio.co/",
   "build": {
     "artifactName": "vkontaktestore-${os}.${ext}",
-    "productName": "VkontakteStore",
+    "productName": "Vkontakte.Store",
     "appId": "com.vks.store",
     "publish": null,
+    "appx" : { 
+      "applicationId":"VKStore.Vkontakte.Store",
+      "identityName" : "5996VKStore.Vkontakte.Store",
+      "publisher" : "CN=5096E8D1-CABC-4BCF-A289-6FA84BEBCAA7",
+      "publisherDisplayName" : "VKStore"
+    },
     "win": {
       "publish": [
         "github"
       ],
       "target": [
         "portable",
-        "nsis",
         "appx"
       ],
       "icon": "assets/icon.ico"
@@ -65,6 +70,6 @@
   },
   "devDependencies": {
     "electron": "^11.0.3",
-    "electron-builder": "^22.7.0"
+    "electron-builder": "^22.9.1"
   }
 }
