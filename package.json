@@ -1,5 +1,5 @@
 {
-  "name": "desktopapp",
+  "name": "vkontakte-store",
   "version": "1.0.10",
   "description": "Electron приложение для запуска без CORS",
   "keywords": [
@@ -20,7 +20,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "siteURL=http://localhost:3000 electron .",
+    "start": "siteURL=https://vkontakte.store electron .",
+    "_start": "siteURL=http://localhost:3000 electron .",
     "release": "git add . && git tag v1.0.1 && git commit -am 'v1.0.1' && git push --tags",
     "build": "echo \"Nothing to build\"",
     "dist": "electron-builder -mwl --x64",
@@ -40,7 +41,11 @@
       "publish": [
         "github"
       ],
-      "target": "portable",
+      "target": [
+        "portable",
+        "nsis",
+        "appx"
+      ],
       "icon": "assets/icon.ico"
     },
     "mac": {
@@ -59,7 +64,7 @@
     }
   },
   "devDependencies": {
-    "electron": "^9.0.4",
+    "electron": "^11.0.3",
     "electron-builder": "^22.7.0"
   }
 }
