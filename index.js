@@ -57,7 +57,13 @@ function createMainWindow () {
 
   // Photo upload
   ipcMain.on('photo:upload', async (e, { msgId, url, server }) => {
-    e.sender.send('photo:uploaded:'+msgId, (await photoUpload(url, server)))
+    let uploadResult = { error: 'Unknow error' }
+    try {
+      uploadResult = await photoUpload(url, server)
+    } catch (err) {
+      uploadResult.error = err.message
+    }
+    e.sender.send('photo:uploaded:'+msgId, uploadResult)
   })
 
   // clear all cookies on logout
