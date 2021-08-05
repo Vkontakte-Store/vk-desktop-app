@@ -23,7 +23,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "postinstall": "electron-builder install-app-deps",
+    "postinstall": "electron-builder install-app-deps && electron-rebuild",
     "start": "siteURL=https://vkontakte.store electron .",
     "_start": "siteURL=http://localhost:3000 electron .",
     "release": "git add . && git tag v1.0.1 && git commit -am 'v1.0.1' && git push --tags",
@@ -77,9 +77,9 @@
     "electron-rebuild": "^2.3.5"
   },
   "dependencies": {
+    "electron": "11.0.3",
     "cross-fetch": "^3.1.4",
     "domino": "^2.1.6",
-    "electron": "13.1.8",
     "form-data": "^4.0.0",
     "sharp": "^0.28.3"
   }

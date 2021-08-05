@@ -1,5 +1,5 @@
 const fetch = require('cross-fetch')
-const formData = require('form-data')
+const FormData = require('form-data')
 const sharp = require('sharp')
 const scraper = require('./scrapper')
 
@@ -23,12 +23,12 @@ async function getImage(url){
 async function resizeImage(img){
     const Image = sharp(img);
     const info = await Image.metadata()
-
+    
     const size = {}
     if (info.width < 500) size.width = 500
     if (info.height < 500) size.height = 500
     if (Object.keys(size).length){
-        return Image.resize(size, {fit: 'contain'}).toBuffer()
+        return Image.resize({...size, fit: 'contain'}).toBuffer()
     }
 
     return img
@@ -36,13 +36,10 @@ async function resizeImage(img){
 
 // Get and upload image
 async function uploadByUrl(imgUrl, serverUrl) {
-    console.log('uploadByUrl', imgUrl, serverUrl);
     const image = await resizeImage( await getImage(imgUrl) )
-    // const image = await getImage(imgUrl)
-
+    
     const formData = new FormData()
-    formData.append('file', image)
-    // formData.append('file', image, 'img.' + file_blob.type.split('/')[1])
+    formData.append('file', image, 'img.png')
 
     return fetch(serverUrl, {
         method : 'post',

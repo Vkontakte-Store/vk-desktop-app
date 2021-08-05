@@ -57,9 +57,7 @@ function createMainWindow () {
 
   // Photo upload
   ipcMain.on('photo:upload', async (e, { msgId, url, server }) => {
-    const res = await photoUpload(url, server)
-    console.log('upload result', res);
-    e.sender.send('photo:uploaded:'+msgId, res)
+    e.sender.send('photo:uploaded:'+msgId, (await photoUpload(url, server)))
   })
 
   // clear all cookies on logout
