@@ -30,13 +30,15 @@
     "release": "git add . && git tag v1.0.1 && git commit -am 'v1.0.1' && git push --tags",
     "build": "echo \"Nothing to build\"",
     "dist": "electron-builder -mwl --x64",
-    "dist_win32": "electron-builder -w --ia32",
-    "build:linux": "electron-builder -l --x64",
-    "build:mac": "electron-builder -m --x64",
-    "build:win": "electron-builder -w --x64",
+    "dist:linux": "electron-builder -l --x64",
+    "dist:mac": "electron-builder -m --x64",
+    "dist:win": "electron-builder -w --x64",
+    "dist:win32": "electron-builder -w --ia32",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "icons_creator": "https://anyconv.com/icns-converter/ + https://convertio.co/",
+  "___npmRebuild": true,
+  "___buildDependenciesFromSource": true,
   "build": {
     "artifactName": "vkontaktestore-${os}.${ext}",
     "productName": "Vkontakte.Store",
@@ -75,13 +77,14 @@
   },
   "devDependencies": {
     "electron": "11.0.3",
-    "electron-builder": "^22.9.1",
+    "electron-builder": "^22.11.7",
     "electron-rebuild": "^2.3.5"
   },
   "dependencies": {
     "cross-fetch": "^3.1.4",
     "domino": "^2.1.6",
     "form-data": "^4.0.0",
-    "sharp": "^0.28.3"
+    "image-size": "^1.0.0",
+    "resize-img": "^2.0.0"
   }
 }
