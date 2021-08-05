@@ -1,7 +1,7 @@
 'use strict'
 
 const { app, shell, ipcMain, session, BrowserWindow, Menu } = require('electron')
-
+const photoUpload = require('./methods/photo/upload')
 
 // disable CORS, and SSL check
 // https://github.com/electron/electron/issues/20710
@@ -55,6 +55,12 @@ function createMainWindow () {
     window.webContents.send('toggle-fullscreen', 'leave')
   })
 
+  // Photo upload
+  ipcMain.on('photo:upload', async (e, { msgId, url, server }) => {
+    const res = await photoUpload(url, server)
+    console.log('upload result', res);
+    e.sender.send('photo:uploaded:'+msgId, res)
+  })
 
   // clear all cookies on logout
   ipcMain.on('clear-cookie', ()=>{

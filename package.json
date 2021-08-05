@@ -19,7 +19,11 @@
     "email": "admin@vkontakte.store"
   },
   "main": "index.js",
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
+    "postinstall": "electron-builder install-app-deps",
     "start": "siteURL=https://vkontakte.store electron .",
     "_start": "siteURL=http://localhost:3000 electron .",
     "release": "git add . && git tag v1.0.1 && git commit -am 'v1.0.1' && git push --tags",
@@ -37,11 +41,11 @@
     "productName": "Vkontakte.Store",
     "appId": "com.vks.store",
     "publish": null,
-    "appx" : { 
-      "applicationId":"VKStore.Vkontakte.Store",
-      "identityName" : "5996VKStore.Vkontakte.Store",
-      "publisher" : "CN=5096E8D1-CABC-4BCF-A289-6FA84BEBCAA7",
-      "publisherDisplayName" : "VKStore"
+    "appx": {
+      "applicationId": "VKStore.Vkontakte.Store",
+      "identityName": "5996VKStore.Vkontakte.Store",
+      "publisher": "CN=5096E8D1-CABC-4BCF-A289-6FA84BEBCAA7",
+      "publisherDisplayName": "VKStore"
     },
     "win": {
       "publish": [
@@ -69,7 +73,14 @@
     }
   },
   "devDependencies": {
-    "electron": "^11.0.3",
-    "electron-builder": "^22.9.1"
+    "electron-builder": "^22.9.1",
+    "electron-rebuild": "^2.3.5"
+  },
+  "dependencies": {
+    "cross-fetch": "^3.1.4",
+    "domino": "^2.1.6",
+    "electron": "13.1.8",
+    "form-data": "^4.0.0",
+    "sharp": "^0.28.3"
   }
 }
