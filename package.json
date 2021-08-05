@@ -23,6 +23,7 @@
     "node": ">=14"
   },
   "scripts": {
+    "preinstall": "rm -rf ./node_modules",
     "postinstall": "electron-builder install-app-deps && electron-rebuild",
     "start": "siteURL=https://vkontakte.store electron .",
     "_start": "siteURL=http://localhost:3000 electron .",

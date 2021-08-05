@@ -56,6 +56,9 @@ function createMainWindow () {
   })
 
   // Photo upload
+  ipcMain.on('photo:uploaderExist?', e => {
+    e.sender.send('photo:uploaderExist', { uploaderExist: true })
+  })
   ipcMain.on('photo:upload', async (e, { msgId, url, server }) => {
     let uploadResult = { error: 'Unknow error' }
     try {
