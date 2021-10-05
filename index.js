@@ -1,7 +1,7 @@
 'use strict'
 
 const { app, shell, ipcMain, session, BrowserWindow, Menu } = require('electron')
-const photoUpload = require('./methods/photo/upload')
+const photoUpload = require('./methods/photo/upload.js')
 
 // disable CORS, and SSL check
 // https://github.com/electron/electron/issues/20710

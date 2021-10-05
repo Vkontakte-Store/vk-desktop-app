@@ -1,10 +1,15 @@
-const fetch = require('cross-fetch')
+const fs = require('fs')
+const path = require('path')
 const FormData = require('form-data')
 const imgSize = require('image-size')
 const resizeImg = require('resize-img')
-const scraper = require('./scrapper')
-const fs = require('fs')
-const path = require('path')
+const scraper = require('./scrapper.js')
+
+const httpsAgent = new (require('https')).Agent({ rejectUnauthorized: false })
+const fetch = (url, options={}) => import('node-fetch').then(({default: fetch}) => {
+    options.agent = httpsAgent
+    return fetch(url, options)
+});
 
 // Find img on web page and download
 async function getImage(url){
@@ -56,7 +61,7 @@ async function uploadByUrl(imgUrl, serverUrl) {
 
     return fetch(serverUrl, {
         method : 'post',
-        body   : formData
+        body   : formData,
     }).then(r => {
         return r.json()
     }).catch( err => {
