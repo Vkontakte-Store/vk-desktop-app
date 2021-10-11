@@ -5,11 +5,12 @@ const imgSize = require('image-size')
 const resizeImg = require('resize-img')
 const scraper = require('./scrapper.js')
 
+const nodeFetch = require('node-fetch')
 const httpsAgent = new (require('https')).Agent({ rejectUnauthorized: false })
-const fetch = (url, options={}) => import('node-fetch').then(({default: fetch}) => {
+const fetch = (url, options={}) => {
     options.agent = httpsAgent
-    return fetch(url, options)
-});
+    return nodeFetch(url, options)
+};
 
 // Find img on web page and download
 async function getImage(url){
