@@ -31,6 +31,7 @@
     "build": "echo \"Nothing to build\"",
     "dist": "electron-builder -mwl --x64",
     "dist:linux": "electron-builder -l --x64",
+    "dist:mac:m1": "electron-builder -m --arm64 ",
     "dist:mac": "electron-builder -m --x64",
     "dist:win": "electron-builder -w --x64",
     "dist:win32": "electron-builder -w --ia32",
