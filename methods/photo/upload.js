@@ -8,7 +8,9 @@ const scraper = require('./scrapper.js')
 const nodeFetch = require('node-fetch')
 const httpsAgent = new (require('https')).Agent({ rejectUnauthorized: false })
 const fetch = (url, options={}) => {
-    options.agent = httpsAgent
+    if (url.includes('https://')) {
+        options.agent = httpsAgent
+    }
     return nodeFetch(url, options)
 };
 
