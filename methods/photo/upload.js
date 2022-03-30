@@ -17,11 +17,12 @@ const fetch = (url, options={}) => {
 // Find img on web page and download
 async function getImage(url){
     const link = new URL(url)
-    
+
     // local filesystem
     if (link.protocol === 'file:'){
-        return new Promise(function(resolve){
-            fs.readFile(path.resolve(link.pathname), (err, localImage)=>{
+        const filepath = path.resolve(path.normalize(url.replace('file://','')))
+        return new Promise(function(resolve, reject){
+            fs.readFile(filepath, (err, localImage)=>{
                 if (err) reject(err)
                 resolve(localImage)
             })
