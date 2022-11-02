@@ -84,7 +84,7 @@
   "dependencies": {
     "domino": "^2.1.6",
     "form-data": "^4.0.0",
-    "image-size": "^1.0.0",
+    "image-size": "^1.0.2",
     "node-fetch": "2.6.2",
     "resize-img": "^2.0.0"
   }
