@@ -5,7 +5,7 @@ const photoUpload = require('./methods/photo/upload.js')
 
 // disable CORS, and SSL check
 // https://github.com/electron/electron/issues/20710
-app.commandLine.appendSwitch('disable-web-security')
+// app.commandLine.appendSwitch('disable-web-security')
 app.commandLine.appendSwitch('ignore-certificate-errors')
 
 let mainWindow
@@ -19,7 +19,7 @@ function createMainWindow () {
   const window = new BrowserWindow({ 
     show: false,
     webPreferences: {
-      webSecurity: false, // https://github.com/electron/electron/issues/20710
+      // webSecurity: false, // https://github.com/electron/electron/issues/20710
       allowRunningInsecureContent: true,
       devTools: true,
       nodeIntegration: true,
@@ -39,6 +39,31 @@ function createMainWindow () {
   window.setMenuBarVisibility(false)
 
   window.loadURL(process.env.siteURL || 'https://vkontakte.store')
+
+
+  // Отключаем web security после авторизации в ВК
+  // иначе сайт ВК ругается на CORS и не дает войти
+  let webSecurityDisabled = false
+  window.webContents.on('will-navigate', (event, navigationUrl) => {
+    if (navigationUrl.includes('?code=')) {
+      app.commandLine.appendSwitch('disable-web-security')
+      webSecurityDisabled = true
+    }
+  })
+  // Отключаем web security после авторизации в ВК
+  function checkUserIsAuth(){
+    if (webSecurityDisabled) return
+    window.webContents.executeJavaScript('App.VK.session.user_id;', true).then(user_id => {
+      if (user_id) {
+        app.commandLine.appendSwitch('disable-web-security')
+        webSecurityDisabled = true
+        window.webContents.executeJavaScript('window.location.reload();', true)
+      }
+      if (webSecurityDisabled) return
+      setTimeout(checkUserIsAuth, 300)
+    })
+  }
+  checkUserIsAuth()
 
 
   // Open external links in default system browser
