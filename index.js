@@ -1,11 +1,9 @@
 'use strict'
-
+const path = require('path')
 const { app, shell, ipcMain, session, BrowserWindow, Menu } = require('electron')
 const photoUpload = require('./methods/photo/upload.js')
 
-// disable CORS, and SSL check
-// https://github.com/electron/electron/issues/20710
-// app.commandLine.appendSwitch('disable-web-security')
+// disable SSL check
 app.commandLine.appendSwitch('ignore-certificate-errors')
 
 let mainWindow
@@ -19,7 +17,7 @@ function createMainWindow () {
   const window = new BrowserWindow({ 
     show: false,
     webPreferences: {
-      // webSecurity: false, // https://github.com/electron/electron/issues/20710
+      preload: path.join(__dirname, 'preload.js'),
       allowRunningInsecureContent: true,
       devTools: true,
       nodeIntegration: true,
@@ -41,7 +39,7 @@ function createMainWindow () {
   window.loadURL(process.env.siteURL || 'https://vkontakte.store')
 
 
-  // Отключаем web security после авторизации в ВК
+  // Отключаем web security(CORS) после авторизации в ВК
   // иначе сайт ВК ругается на CORS и не дает войти
   let webSecurityDisabled = false
   window.webContents.on('will-navigate', (event, navigationUrl) => {
