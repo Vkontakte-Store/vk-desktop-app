@@ -1,6 +1,6 @@
 {
   "name": "vkontakte-store",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "Electron приложение для запуска без CORS",
   "keywords": [
     "automate"
