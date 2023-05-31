@@ -1,6 +1,6 @@
 {
   "name": "vkontakte-store",
-  "version": "1.2.20",
+  "version": "1.3.0",
   "description": "Electron приложение для запуска без CORS",
   "keywords": [
     "automate"
@@ -20,14 +20,14 @@
   },
   "main": "index.js",
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "scripts": {
-    "preinstall": "rm -rf ./node_modules",
-    "postinstall": "electron-builder install-app-deps && electron-rebuild",
-    "start": "siteURL=https://vkontakte.store electron .",
-    "_start": "siteURL=http://localhost:3000 electron .",
-    "release": "git add . && git tag v1.2.19 && git commit -am 'v1.2.19' && git push --tags",
+    "_preinstall": "rm -rf ./node_modules",
+    "postinstall": "electron-builder install-app-deps & electron-rebuild",
+    "_start": "siteURL=https://vkontakte.store electron .",
+    "start": "siteURL=http://localhost:3000 electron .",
+    "release": "git add . && git tag v1.3.0 && git commit -am 'v1.3.0' && git push --tags",
     "build": "echo \"Nothing to build\"",
     "dist": "electron-builder -mwl --x64",
     "dist:linux": "electron-builder -l --x64",
@@ -77,9 +77,9 @@
     }
   },
   "devDependencies": {
-    "electron": "11.0.3",
-    "electron-builder": "^22.11.7",
-    "electron-rebuild": "^2.3.5"
+    "electron": "25.0.0",
+    "@electron/rebuild": "^3.2.13",
+    "electron-builder": "23.6.0"
   },
   "dependencies": {
     "domino": "^2.1.6",
