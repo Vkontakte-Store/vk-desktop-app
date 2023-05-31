@@ -1,6 +1,6 @@
 {
   "name": "vkontakte-store",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Electron приложение для запуска без CORS",
   "keywords": [
     "automate"
@@ -23,11 +23,11 @@
     "node": ">=18"
   },
   "scripts": {
-    "_preinstall": "rm -rf ./node_modules",
+    "preinstall": "rm -rf ./node_modules",
     "postinstall": "electron-builder install-app-deps & electron-rebuild",
-    "_start": "siteURL=https://vkontakte.store electron .",
-    "start": "siteURL=http://localhost:3000 electron .",
-    "release": "git add . && git tag v1.3.0 && git commit -am 'v1.3.0' && git push --tags",
+    "start": "siteURL=https://vkontakte.store electron .",
+    "_start": "siteURL=http://localhost:3000 electron .",
+    "release": "git add . && git tag v1.3.1 && git commit -am 'v1.3.1' && git push --tags",
     "build": "echo \"Nothing to build\"",
     "dist": "electron-builder -mwl --x64",
     "dist:linux": "electron-builder -l --x64",
