@@ -1,0 +1,3 @@
+desktop/src-tauri/target/
+desktop/.ci-home/
+.DS_Store

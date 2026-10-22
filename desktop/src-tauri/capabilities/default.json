@@ -1,0 +1,6 @@
+{
+  "identifier": "default",
+  "description": "Сайт в окне не получает команды оболочки: токены и файлы остаются на сервере.",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}
