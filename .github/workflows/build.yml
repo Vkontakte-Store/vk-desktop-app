@@ -45,10 +45,11 @@ jobs:
       - uses: tauri-apps/tauri-action@v0
         env:
           VKS_SITE_URL: https://dev.vkontakte.store
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           projectPath: desktop
-          tagName: v__VERSION__
-          releaseName: ВКонтакте Store v__VERSION__
+          tagName: ${{ startsWith(github.ref, 'refs/tags/') && 'v__VERSION__' || '' }}
+          releaseName: ${{ startsWith(github.ref, 'refs/tags/') && 'ВКонтакте Store v__VERSION__' || '' }}
           releaseDraft: true
           args: --target ${{ matrix.target }}
 
